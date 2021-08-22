@@ -19,10 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group( '/v1/{locale}', function( $locale ) {
-    if ( !in_array( $locale, [ 'ja', 'en' ] ) ) abort( 404 );
-    App::setLocale( $locale );
-
+Route::prefix( '/v1/{locale}' )->group( function( $locale ) {
     //
-
 } );
