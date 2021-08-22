@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group( '/v1/{locale}', function( $locale ) {
+    if ( !in_array( $locale, [ 'ja', 'en' ] ) ) abort( 404 );
+    App::setLocale( $locale );
+
+    //
+
+} );
